@@ -13,7 +13,6 @@ public class RviewAdapter extends RecyclerView.Adapter<RviewHolder> {
     private final ArrayList<ItemCard> itemList;
     private ItemClickListener listener;
 
-    //Constructor
     public RviewAdapter(ArrayList<ItemCard> itemList) {
         this.itemList = itemList;
     }
@@ -31,7 +30,6 @@ public class RviewAdapter extends RecyclerView.Adapter<RviewHolder> {
     @Override
     public void onBindViewHolder(RviewHolder holder, int position) {
         ItemCard currentItem = itemList.get(position);
-
         holder.name.setText(currentItem.getName());
         holder.link.setText(currentItem.getLink());
     }
