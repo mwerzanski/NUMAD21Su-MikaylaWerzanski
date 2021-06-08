@@ -33,5 +33,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(clickyActivity);
             }
         });
+
+        Button linkCollector = findViewById(R.id.linkCollector);
+        linkCollector.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("Link Collector screen appears");
+
+                Intent linkCollectorActivity = new Intent(getApplicationContext(), linkCollectorActivity.class);
+                startActivity(linkCollectorActivity);
+            }
+        });
     }
 }
