@@ -92,7 +92,6 @@ public class linkCollectorActivity extends AppCompatActivity {
 
                 int size = savedInstanceState.getInt(NUMBER_OF_ITEMS);
 
-                // Retrieve keys we stored in the instance
                 for (int i = 0; i < size; i++) {
                     String name = savedInstanceState.getString(KEY_OF_INSTANCE + i + "0");
                     String link = savedInstanceState.getString(KEY_OF_INSTANCE + i + "1");
@@ -118,8 +117,14 @@ public class linkCollectorActivity extends AppCompatActivity {
         ItemClickListener itemClickListener = new ItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                //attributions bond to the item has been changed
                 itemList.get(position).onItemClick(position);
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(itemList.get(position).getLink()));
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Toast.makeText(linkCollectorActivity.this, "An error occurred. " +
+                            "Please make sure your link is in the correct form.", Toast.LENGTH_LONG).show();
+                }
 
                 rviewAdapter.notifyItemChanged(position);
             }
@@ -128,21 +133,17 @@ public class linkCollectorActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(rviewAdapter);
         recyclerView.setLayoutManager(rLayoutManger);
-
-
     }
 
     private void addItem(int position) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
 
         final EditText inputName = new EditText(this);
         inputName.setHint("Name:");
         inputName.setInputType(InputType.TYPE_CLASS_TEXT);
-
         final EditText inputLink = new EditText(this);
         inputLink.setHint("Link:");
         inputLink.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -158,6 +159,8 @@ public class linkCollectorActivity extends AppCompatActivity {
                 inputItemLink = inputLink.getText().toString();
                 itemList.add(position, new ItemCard(inputItemName, inputItemLink));
                 Toast.makeText(linkCollectorActivity.this, "An item was successfully added", Toast.LENGTH_SHORT).show();
+
+                rviewAdapter.notifyItemInserted(position);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -166,6 +169,6 @@ public class linkCollectorActivity extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-        rviewAdapter.notifyItemInserted(position);
+        builder.show();
     }
 }

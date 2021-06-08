@@ -1,5 +1,8 @@
 package com.example.numad21su_mikaylawerzanski;
 
+import android.content.Intent;
+import android.net.Uri;
+
 public class ItemCard implements ItemClickListener {
 
     private final String name;
@@ -22,6 +25,6 @@ public class ItemCard implements ItemClickListener {
 
     @Override
     public void onItemClick(int position) {
-        String name = getName();
+
     }
 }
