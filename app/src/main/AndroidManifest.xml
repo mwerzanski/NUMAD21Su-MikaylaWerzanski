@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_mw_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NUMAD21SuMikaylaWerzanski">
-        <activity android:name=".clickyActivity" android:configChanges="keyboardHidden|orientation|screenSize"></activity>
+        <activity android:name=".linkCollectorActivity"></activity>
+        <activity
+            android:name=".clickyActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
