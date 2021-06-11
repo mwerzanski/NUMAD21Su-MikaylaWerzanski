@@ -43,5 +43,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(linkCollectorActivity);
             }
         });
+
+        Button locator = findViewById(R.id.locator);
+        locator.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("Locator screen appears");
+
+                Intent locatorActivity = new Intent(getApplicationContext(), LocatorActivity.class);
+                startActivity(locatorActivity);
+            }
+        });
     }
 }
