@@ -26,12 +26,12 @@ public class LocatorActivity extends AppCompatActivity {
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        double longitude = location.getLongitude();
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location gpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        double longitude = gpsLocation.getLongitude();
         TextView lngtd = (TextView) findViewById(R.id.longitude);
         lngtd.setText("Longitude: " + Double.toString(longitude));
-        double latitude = location.getLatitude();
+        double latitude = gpsLocation.getLatitude();
         TextView lat = (TextView) findViewById(R.id.latitude);
         lat.setText("Latitude: " + Double.toString(latitude));
     }
