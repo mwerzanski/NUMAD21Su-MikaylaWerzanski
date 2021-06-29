@@ -53,5 +53,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(locatorActivity);
             }
         });
+
+        Button webService = findViewById(R.id.webService);
+        webService.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                System.out.println("Web service screen appears");
+
+                Intent webService = new Intent(getApplicationContext(), WebService.class);
+                startActivity(webService);
+            }
+        });
     }
 }
